@@ -40,7 +40,7 @@ class  DynMainMenuCrudRepository extends BaseRepository implements IDynMainMenuC
      */
     public function list($request) : JsonResponse
     {
-        $model = DynMainMenu::query();
+        $model = DynMainMenu::with(['page']);
         $this->saveTractAction(
             $this->getTrackData(
                 title: 'DynMainMenu was viewed by '.$request?->auth?->name.' at '.Carbon::now()->format('d M Y H:i:s A'),
@@ -63,12 +63,12 @@ class  DynMainMenuCrudRepository extends BaseRepository implements IDynMainMenuC
      * @return JsonResponse
      */
     public function store($request) : JsonResponse
-    {   
+    {
         DB::beginTransaction();
         try {
             DynMainMenu::create([
                 ...$request->all(),
-                //'serial' => $this->facSrWc($this->DynMainMenu)
+                'serial' => $this->facSrWc($this->DynMainMenu)
             ]);
             $response['extraData'] = ['inflate' => pxLang($request->lang,'','common.action_success') ];
             $this->saveTractAction($this->getTrackData(title: "DynMainMenu was created by ".$request?->auth?->name,request: $request));
@@ -126,11 +126,11 @@ class  DynMainMenuCrudRepository extends BaseRepository implements IDynMainMenuC
      */
     public function updateList($request) : JsonResponse
     {
-        $i = DynMainMenu::whereIn('id',$request->ids)->select(['id','name'])->get();;
+        $i = DynMainMenu::whereIn('id',$request->ids)->select(['id','serial'])->get();;
         $dirty = [];
         if (count($i) > 0) {
             foreach ($i as $key => $value) {
-                //$value->serial = $request->serial[$value->id];
+                $value->serial = $request->serial[$value->id];
                 if ($value->isDirty()) {
                     $dirty[$key] = "yes";
                 }

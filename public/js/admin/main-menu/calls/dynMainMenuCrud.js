@@ -50,7 +50,7 @@ $(document).ready(function(){
                 data: 'id',
                 title: table?.id
             },
-            /*{
+            {
                 data: null,
                 title: table?.serial,
                 class: 'text-center',
@@ -58,10 +58,14 @@ $(document).ready(function(){
                 render: function (data, type, row) {
                     return `<input type="number" value="` + data.serial + `" class="form-control serial"><input type="hidden" value="` + data.id + `" class="form-control ids">`;
                 }
-            },*/
+            },
             {
                 data: 'name',
                 title: table?.name
+            },
+            {
+                data: 'page.name',
+                title: table?.dyn_page_id
             },
 
             {

@@ -15,5 +15,10 @@ class DynMainMenu extends Model
         'dyn_page_id',
         'serial'
     ];
+
+    public function page()
+    {
+        return $this->hasOne(DynPage::class,'id','dyn_page_id');
+    }
     //vpx_attach
 }
