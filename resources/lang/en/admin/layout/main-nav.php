@@ -4,6 +4,7 @@ return [
     'dashboard' => 'Dashboard',
     'pages.menu' => 'Page Management',
     'categories.menu' => 'Categories',
+    'articles.menu' => 'Articles',
     'main-menu.menu' => 'Main Menus',
     'system.core' => 'System Core',
     'system.core.user_role' => 'User Roles',

@@ -49,7 +49,8 @@ return [
                     'system',
                     'pages',
                     'category',
-                    'main-menu'
+                    'main-menu',
+                    'articles'
                 ]
             ]
         ]
@@ -93,6 +94,7 @@ return [
         'admin.system.user.policy' => 'admin/system/user/policy/index',
         'admin.pages.crud' => 'admin/pages/crud/index',
         'admin.category.crud' => 'admin/category/crud/index',
-        'admin.main-menu.crud' => 'admin/main-menu/crud/index'
+        'admin.main-menu.crud' => 'admin/main-menu/crud/index',
+        'admin.articles.crud' => 'admin/articles/crud/index'
     ]
 ];
