@@ -47,7 +47,8 @@ return [
                     'setup',
                     'reset',
                     'system',
-                    'pages'
+                    'pages',
+                    'category'
                 ]
             ]
         ]
@@ -89,6 +90,7 @@ return [
         'admin.system.user' => 'admin/system/user/index',
         'admin.system.user.user-role' => 'admin/system/user/user-role/index',
         'admin.system.user.policy' => 'admin/system/user/policy/index',
-        'admin.pages.crud' => 'admin/pages/crud/index'
+        'admin.pages.crud' => 'admin/pages/crud/index',
+        'admin.category.crud' => 'admin/category/crud/index'
     ]
 ];

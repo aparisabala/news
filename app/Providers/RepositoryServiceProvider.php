@@ -6,6 +6,8 @@ use App\Repositories\BaseRepository;
 use App\Repositories\IBaseRepository;
 use Illuminate\Support\ServiceProvider;
 //vpx_imports
+use App\Repositories\Admin\Category\Crud\IDynCategoryCrudRepository;
+use App\Repositories\Admin\Category\Crud\DynCategoryCrudRepository;
 use App\Repositories\Admin\Pages\Crud\IDynPageCrudRepository;
 use App\Repositories\Admin\Pages\Crud\DynPageCrudRepository;
 use App\Repositories\Admin\System\User\Policy\IAdminUserPolicyRepository;
@@ -23,6 +25,7 @@ class RepositoryServiceProvider extends ServiceProvider
         {
             $this->app->bind(abstract: IBaseRepository::class, concrete: BaseRepository::class);
             //vpx_attach
+            $this->app->bind(abstract: IDynCategoryCrudRepository::class, concrete: DynCategoryCrudRepository::class);
             $this->app->bind(abstract: IDynPageCrudRepository::class, concrete: DynPageCrudRepository::class);
             $this->app->bind(abstract: IAdminUserPolicyRepository::class, concrete: AdminUserPolicyRepository::class);
             $this->app->bind(abstract: IAdminUserRoleCrudRepository::class, concrete: AdminUserRoleCrudRepository::class);

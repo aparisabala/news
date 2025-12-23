@@ -35,6 +35,12 @@
                         <span>{{pxLang('admin.main-nav','pages.menu')}}</span>
                     </a>
                 </li>
+                <li class="">
+                    <a href="{{url('admin/category')}}" class="">
+                        <i class="fa fa-list"></i>
+                        <span>{{pxLang('admin.main-nav','categories.menu')}}</span>
+                    </a>
+                </li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="bx bxs-cog"></i>

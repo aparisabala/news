@@ -2,12 +2,13 @@
 
 namespace App\Traits\PxTraits\Policies;
 
+use App\Traits\PxTraits\Policies\Items\CategoryPolicy;
 use App\Traits\PxTraits\Policies\Items\PagePolicy;
 use App\Traits\PxTraits\Policies\Items\SytemUserPolicyTrait;
 
 trait BasePolicyTrait {
 
-    use SytemUserPolicyTrait,PagePolicy;
+    use SytemUserPolicyTrait,PagePolicy,CategoryPolicy;
     public function systemPolicies(){
         return [
             [
@@ -15,6 +16,9 @@ trait BasePolicyTrait {
                 'policies' => [
                     [
                         ...$this->pagePolicies()
+                    ],
+                    [
+                        ...$this->categoryPolicies()
                     ],
                     [
                         ...$this->systemUserPolicies()
