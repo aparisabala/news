@@ -14,5 +14,10 @@ class DynCategory extends Model
         'name',
         'serial'
     ];
+
+    public function components()
+    {
+        return $this->hasMany(DynArticleComponent::class,'dyn_category_id','id');
+    }
     //vpx_attach
 }

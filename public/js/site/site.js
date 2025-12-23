@@ -1,4 +1,4 @@
 $(document).ready(function(){
 
-    //PX?.utils?.fixHeight('carousel-item','carousel-item',0,20);
+    PX?.utils?.fixHeight('blog-card','blog-card',0,20);
 })
