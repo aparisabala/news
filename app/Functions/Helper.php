@@ -38,3 +38,7 @@ if (! function_exists('pxLang')) {
 function getPolicyKey($Str,$key) {
     return $Str::lower($Str::replace(' ','_',$key));
 }
+
+function getArticleView($str,$limit=70){
+    return ($str == '') ? $str :  mb_substr(strip_tags($str),0,$limit);
+}
