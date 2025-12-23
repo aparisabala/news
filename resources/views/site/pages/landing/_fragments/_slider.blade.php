@@ -1,5 +1,10 @@
 @if(count($data['sliders']) > 0)
-<div id="carouselExample" class="carousel slide">
+<div id="carouselExample" class="carousel slide"  data-bs-ride="carousel" data-bs-interval="3000">
+    <div class="carousel-indicators">
+        @foreach ($data['sliders'] as $key => $item)
+            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="{{$key}}" class="{{($key==1) ? 'active':''}}" aria-current="true" aria-label="Slide {{$key+1}}"></button>
+        @endforeach
+    </div>
   <div class="carousel-inner">
     @foreach ($data['sliders'] as $key =>  $item)
         <div class="carousel-item {{($key == 0) ? 'active':''}}">
@@ -18,13 +23,5 @@
         </div>
     @endforeach
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
 </div>
 @endif

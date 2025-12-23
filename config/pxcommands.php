@@ -87,8 +87,7 @@ return [
                 ],
                 'local' => [
                     'px',
-                    'site/theme',
-                    'panel/blank-theme'
+                    'site'
                 ],
                 'conditional' => [
                     'site/landing'
