@@ -1,17 +1,6 @@
 @extends('site.layouts.main-layout',["tabTitle" => config('i.service_name')." | Dashboard" ])
 @section('page')
-	@section('breadCum')
-		<h4 class="mb-0">Page</h4>
-	@endsection
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="card">
-					<div class="card-body">
-						Page content
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+  @include('site.pages.landing._fragments._slider')
+  @include('site.pages.landing._fragments._featured')
+  @include('site.pages.landing._fragments._categories')
 @endsection

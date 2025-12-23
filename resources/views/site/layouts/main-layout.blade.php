@@ -16,9 +16,10 @@
             </div>
         </div>
     </div>
-    @include('site.includes.header')
-    @yield('breadCum')
+    <main class="container">
+        @include('site.includes.header')
         @yield('page')
+    </main>
     @include('site.includes.footer')
     @include('site.includes.footer-resource', ['react' => $react ?? []])
 </body>

@@ -8,5 +8,6 @@
 <link rel="shortcut icon" href="{{ config('i.favicon') }}" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
 {!! $appStyles ?? '' !!}
 @include('site.includes.theme')
