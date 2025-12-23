@@ -1,6 +1,13 @@
 <div class="bg-info pl-2 page-fragment-bar">
     <span class="text-light"> <a href="{{url('admin/articles')}}"><span class="badge badge-info cursor-pointer"> <i class='fa-solid fa-arrow-left fs-16'></i></span></a> <span class="pt-1"> {{pxLang($data['lang'],'update')}}   </span> </span>
 </div>
+@php
+    $components = [
+        'slider' => 'Slider',
+        'featured' => 'Featured',
+        'side_bar' => 'Side Bar'
+   ];
+@endphp
 <div class="mt-4 p-3">
     @can('dyn_article_crud_edit')
         <form id="frmUpdateDynArticle" autocomplete="off">
@@ -32,11 +39,30 @@
                                         <textarea class="form-control" name="content" id="content">{{$data['item']?->content}}</textarea>
                                     </div>
                                 </div>
-                                <div class="mb-3 mt-3 text-end">
-                                    <button class="btn btn-info btn-sm" type="submit"><i class="fa fa-save"></i> {{pxLang($data['lang'],'','common.btns.crud_action_update')}} </button>
-                                </div>
                             </div>
                         </div>
+                        <div class="col-md-4">
+                            <h5> In Components </h5>
+                            <div class="row">
+                                @foreach ($components as $key => $item)
+                                    <div class="col-md-4">
+                                        <input type="checkbox" {{(in_array($key, $data['componentTaken'])) ? 'checked':''}} value="{{$key}}" name="components[]" /> {{$item}}
+                                    </div>
+                                @endforeach
+                            </div>
+                            <hr>
+                            <h5 class="mt-3"> In Categories </h5>
+                            <div class="row">
+                                @foreach ($data['categories'] as $item)
+                                    <div class="col-md-4">
+                                        <input type="checkbox" {{(in_array($item?->id, $data['categoryTaken'])) ? 'checked':''}} value="{{$item?->id}}" name="categories[]" /> {{$item?->name}}
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 mt-3 text-end">
+                        <button class="btn btn-info btn-sm" type="submit"><i class="fa fa-save"></i> {{pxLang($data['lang'],'','common.btns.crud_action_update')}} </button>
                     </div>
                 </div>
             </div>

@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('dyn_article_id');
             $table->string('type');
+            $table->string('componet_type')->nullable();
+            $table->foreignId('dyn_category_id')->nullable();
             $table->timestamps();
         });
     }

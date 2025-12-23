@@ -6,6 +6,8 @@ use App\Repositories\BaseRepository;
 use App\Repositories\IBaseRepository;
 use Illuminate\Support\ServiceProvider;
 //vpx_imports
+use App\Repositories\Site\Landing\ISiteLandingRepository;
+use App\Repositories\Site\Landing\SiteLandingRepository;
 use App\Repositories\Admin\Articles\Crud\IDynArticleCrudRepository;
 use App\Repositories\Admin\Articles\Crud\DynArticleCrudRepository;
 use App\Repositories\Admin\MainMenu\Crud\IDynMainMenuCrudRepository;
@@ -29,6 +31,7 @@ class RepositoryServiceProvider extends ServiceProvider
         {
             $this->app->bind(abstract: IBaseRepository::class, concrete: BaseRepository::class);
             //vpx_attach
+            $this->app->bind(abstract: ISiteLandingRepository::class, concrete: SiteLandingRepository::class);
             $this->app->bind(abstract: IDynArticleCrudRepository::class, concrete: DynArticleCrudRepository::class);
             $this->app->bind(abstract: IDynMainMenuCrudRepository::class, concrete: DynMainMenuCrudRepository::class);
             $this->app->bind(abstract: IDynCategoryCrudRepository::class, concrete: DynCategoryCrudRepository::class);

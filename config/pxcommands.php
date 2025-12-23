@@ -53,6 +53,48 @@ return [
                     'articles'
                 ]
             ]
+        ],
+        'site' => [
+            'styles' => [
+                'cdns' => [
+                    'bootstrap5',
+                    'fontAwesome',
+                    'boxIcon',
+                    'jqConfirm',
+                    'datatable5'
+                ],
+                'local' => [
+                    'px',
+                    'site/theme',
+                    'panel/blank-theme'
+                ],
+                'conditional' => [
+
+                ]
+            ],
+            'scripts' => [
+                'cdns' => [
+                    'jq',
+                    'bootstrap5',
+                    'popper',
+                    'fontAwesome',
+                    'boxIcon',
+                    'jqConfirm',
+                    'datatable5',
+                    'dataTableSelectCheckbox',
+                    'pdfmake',
+                    'xlsx',
+                    'dateTimePicker'
+                ],
+                'local' => [
+                    'px',
+                    'site/theme',
+                    'panel/blank-theme'
+                ],
+                'conditional' => [
+                    'site/landing'
+                ]
+            ]
         ]
     ],
     'styles' => [
@@ -95,6 +137,7 @@ return [
         'admin.pages.crud' => 'admin/pages/crud/index',
         'admin.category.crud' => 'admin/category/crud/index',
         'admin.main-menu.crud' => 'admin/main-menu/crud/index',
-        'admin.articles.crud' => 'admin/articles/crud/index'
+        'admin.articles.crud' => 'admin/articles/crud/index',
+        'site.landing.index' => 'site/landing/index'
     ]
 ];

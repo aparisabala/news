@@ -4,6 +4,7 @@ namespace App\Repositories\Admin\Articles\Crud;
 
 use App\Http\Requests\Admin\Articles\Crud\ValidateUpdateDynArticle;
 use App\Models\DynArticle;
+use App\Models\DynArticleComponent;
 use App\Repositories\BaseRepository;
 use App\Traits\BaseTrait;
 use Carbon\Carbon;
@@ -91,7 +92,25 @@ class  DynArticleCrudRepository extends BaseRepository implements IDynArticleCru
                 $insert['feature_image'] = $image_link;
                 $insert['extension'] = $extension;
             }
-            DynArticle::create($insert);
+            $article = DynArticle::create($insert);
+            if(isset($request->components)){
+                foreach ($request->components as $key => $value) {
+                    $c = new  DynArticleComponent;
+                    $c->dyn_article_id = $article->id;
+                    $c->componet_type = 'components';
+                    $c->type = $value;
+                    $c->save();
+                }
+            }
+            if(isset($request->categories)){
+                foreach ($request->categories as $key => $value) {
+                    $c = new  DynArticleComponent;
+                    $c->dyn_article_id = $article->id;
+                    $c->dyn_category_id = $value;
+                    $c->type = 'categories';
+                    $c->save();
+                }
+            }
             $response['extraData'] = ['inflate' => pxLang($request->lang,'','common.action_success') ];
             $this->saveTractAction($this->getTrackData(title: "DynArticle was created by ".$request?->auth?->name,request: $request));
             DB::commit();
@@ -123,7 +142,27 @@ class  DynArticleCrudRepository extends BaseRepository implements IDynArticleCru
         ]);
         $path = imagePaths()['dyn_image'];
         $image = $request->file('feature_image');
-        if($row->isDirty() || $image != ''){
+        if(isset($request->components)){
+            DynArticleComponent::where([['dyn_article_id','=',$row->id],['componet_type','=','components']])->delete();
+            foreach ($request->components as $key => $value) {
+                $c = new  DynArticleComponent;
+                $c->dyn_article_id = $row->id;
+                $c->componet_type = 'components';
+                $c->type = $value;
+                $c->save();
+            }
+        }
+        if(isset($request->categories)){
+            DynArticleComponent::where([['dyn_article_id','=',$row->id],['type','=','categories']])->delete();
+            foreach ($request->categories as $key => $value) {
+                $c = new  DynArticleComponent;
+                $c->dyn_article_id = $row->id;
+                $c->dyn_category_id = $value;
+                $c->type = 'categories';
+                $c->save();
+            }
+        }
+        if($row->isDirty() || $image != '' || isset($request->components) || isset($request->categories)){
             $validator = Validator::make($request->all(), (new ValidateUpdateDynArticle())->rules($request,$row));
             if ($validator->fails()) {
                 return $this->response(['type' => 'validation','errors' => $validator->errors()]);
