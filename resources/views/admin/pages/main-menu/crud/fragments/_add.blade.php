@@ -2,12 +2,12 @@
     <span class="text-light"> <a href=""><span class="badge badge-info cursor-pointer"> <i class='fa-solid fa-arrow-left fs-16'></i></span></a> <span class="pt-1">{{pxLang($data['lang'],'add')}}  </span> </span>
 </div>
 <div class="mt-4 p-3">
-    @can('dyn_page_crud_store')
-        <form id="frmStoreDynPage" autocomplete="off">
+    @can('dyn_main_menu_crud_store')
+        <form id="frmStoreDynMainMenu" autocomplete="off">
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
-                        <div class="col-md-9">
+                        <div class="col-md-4">
                             <div class="card p-2 shadow-card card-border">
                                 <div class="form-group text-left mb-3">
                                     <label class="form-label"> <b>{{pxLang($data['lang'],'fields.name')}}</b> <em class="required">*</em> <span id="name_error"></span></label>
@@ -16,15 +16,14 @@
                                     </div>
                                 </div>
                                 <div class="form-group text-left mb-3">
-                                    <label class="form-label"> <b>{{pxLang($data['lang'],'fields.feature_image')}}</b> <em class="required"></em> <span id="feature_image_error"></span></label>
+                                    <label class="form-label"> <b>{{pxLang($data['lang'],'fields.dyn_page_id')}}</b> <em class="required">*</em> <span id="dyn_page_id_error"></span></label>
                                     <div class="input-group">
-                                        <input type="file" class="form-control" name="feature_image" id="feature_image">
-                                    </div>
-                                </div>
-                                <div class="form-group text-left mb-3">
-                                    <label class="form-label"> <b>{{pxLang($data['lang'],'fields.content')}}</b> <em class="required"></em> <span id="content_error"></span></label>
-                                    <div class="input-group">
-                                        <textarea class="form-control" name="content" id="content"></textarea>
+                                        <select class="form-control" name="dyn_page_id" id="dyn_page_id">
+                                            <option value="">-- {{pxLang('','','common.text.option_select')}} -- </option>
+                                            @foreach ($data['pages'] as $item)
+                                                <option value="{{$item?->id}}">{{$item?->name}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="mb-3 mt-3 text-end">

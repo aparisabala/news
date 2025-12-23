@@ -30,8 +30,8 @@ class ValidateStoreDynPage extends FormRequest
     {
         return [
             'name' => 'required|string|max:253|unique:dyn_pages,name',
-            'feature_image' => 'required|file|mimes:png,jpg,JPEG,JPG,webp',
-            'content' => 'required|string'
+            'feature_image' => 'nullable|file|mimes:png,jpg,JPEG,JPG,webp',
+            'content' => 'nullable|string'
         ];
     }
 

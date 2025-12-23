@@ -1,35 +1,31 @@
 <div class="bg-info pl-2 page-fragment-bar">
-    <span class="text-light"> <a href="{{url('admin/pages')}}"><span class="badge badge-info cursor-pointer"> <i class='fa-solid fa-arrow-left fs-16'></i></span></a> <span class="pt-1"> {{pxLang($data['lang'],'update')}}   </span> </span>
+    <span class="text-light"> <a href="{{url('admin/main-menu')}}"><span class="badge badge-info cursor-pointer"> <i class='fa-solid fa-arrow-left fs-16'></i></span></a> <span class="pt-1"> {{pxLang($data['lang'],'update')}}   </span> </span>
 </div>
 <div class="mt-4 p-3">
-    @can('dyn_page_crud_edit')
-        <form id="frmUpdateDynPage" autocomplete="off">
+    @can('dyn_main_menu_crud_edit')
+        <form id="frmUpdateDynMainMenu" autocomplete="off">
             @method('PATCH')
             <input type="hidden" id="patch_id" value="{{$data['item']?->id}}" />
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
-                        <div class="col-md-9">
+                        <div class="col-md-4">
                             <div class="card p-2 shadow-card card-border">
-                                <div class="form-group text-left mb-3">
+                               <div class="form-group text-left mb-3">
                                     <label class="form-label"> <b>{{pxLang($data['lang'],'fields.name')}}</b> <em class="required">*</em> <span id="name_error"></span></label>
                                     <div class="input-group">
                                         <input type="text" class="form-control" name="name" id="name" value="{{$data['item']?->name}}">
                                     </div>
                                 </div>
                                 <div class="form-group text-left mb-3">
-                                    <label class="form-label"> <b>{{pxLang($data['lang'],'fields.feature_image')}}</b> <em class="required"></em> <span id="feature_image_error"></span></label>
+                                    <label class="form-label"> <b>{{pxLang($data['lang'],'fields.dyn_page_id')}}</b> <em class="required">*</em> <span id="dyn_page_id_error"></span></label>
                                     <div class="input-group">
-                                        <input type="file" class="form-control" name="feature_image" id="feature_image">
-                                    </div>
-                                </div>
-                                <div>
-                                    <img src="{{getRowImage(row: $data['item'],col:'feature_image', ext: '80X80')}}" class="img-fluid" />
-                                </div>
-                                <div class="form-group text-left mb-3">
-                                    <label class="form-label"> <b>{{pxLang($data['lang'],'fields.content')}}</b> <em class="required"></em> <span id="content_error"></span></label>
-                                    <div class="input-group">
-                                        <textarea class="form-control" name="content" id="content">{{$data['item']?->content}}</textarea>
+                                        <select class="form-control" name="dyn_page_id" id="dyn_page_id">
+                                            <option value="">-- {{pxLang('','','common.text.option_select')}} -- </option>
+                                            @foreach ($data['pages'] as $item)
+                                                <option {{($data['item']?->dyn_page_id == $item?->is) ? 'selected':''}} value="{{$item?->id}}">{{$item?->name}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="mb-3 mt-3 text-end">

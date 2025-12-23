@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Admin\Pages\Crud;
+namespace App\Http\Requests\Admin\MainMenu\Crud;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\ValidationException;
-class ValidateUpdateDynPage extends FormRequest
+class ValidateStoreDynMainMenu extends FormRequest
 {
    /**
      * Determine if the user is authorized to make this request.
@@ -26,16 +26,12 @@ class ValidateUpdateDynPage extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
-    public function rules($request,$row): array
+    public function rules(): array
     {
-        $rules =  [
-            'feature_image' => 'nullable|file|mimes:png,jpg,JPEG,JPG,webp',
-            'content' => 'nullable|string'
+        return [
+            'name' => 'required|string|max:253|unique:dyn_main_menus,name',
+            'dyn_page_id' => 'required|exists:dyn_pages,id'
         ];
-        if($row->isDirty('name')) {
-            $rules['name'] = 'required|string|max:253|unique:dyn_pages,name';
-        }
-        return $rules;
     }
 
     protected function failedValidation(Validator $validator)

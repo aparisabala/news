@@ -1,31 +1,19 @@
-$(document).ready(function () {
+$(document).ready(function(){
 
-    if ($("#content").length > 0) {
-        PX?.utils?.summerNote('content');
-    }
-
-    if ($("#feature_image").length > 0) {
-        PX?.initCropper('feature_image', {
-            outputWidth: 1280,
-            outputHeight: 720,
-            mimeType: 'image/jpeg',
-            maxFileSize: 100000,
-            boundingBox: { width: 400, height: 175 },
-            quality: 1
-        });
-    }
-
-    if ($('#frmStoreDynPage').length > 0) {
+    if ($('#frmStoreDynMainMenu').length > 0) {
         let rules = {
             name: {
                 required: true,
                 maxlength: 253
-            }
+            },
+            dyn_page_id: {
+                required: true,
+            },
         };
         PX.ajaxRequest({
-            element: 'frmStoreDynPage',
+            element: 'frmStoreDynMainMenu',
             validation: true,
-            script: 'admin/pages',
+            script: 'admin/main-menu',
             rules,
             afterSuccess: {
                 type: 'inflate_reset_response_data',
@@ -33,44 +21,49 @@ $(document).ready(function () {
         });
     }
 
-    if ($('#frmUpdateDynPage').length > 0) {
+    if ($('#frmUpdateDynMainMenu').length > 0) {
         let rules = {
             name: {
                 required: true,
                 maxlength: 253
-            }
+            },
+            dyn_page_id: {
+                required: true,
+            },
         };
         PX.ajaxRequest({
-            element: 'frmUpdateDynPage',
+            element: 'frmUpdateDynMainMenu',
             validation: true,
-            script: 'admin/pages/' + $("#patch_id").val(),
+            script: 'admin/main-menu/'+$("#patch_id").val(),
             rules,
             afterSuccess: {
-                type: 'inflate_redirect_response_data',
+                type: 'inflate_response_data',
             }
         });
     }
 
-    if ($("#dtDynPage").length > 0) {
-        const { pageLang = {} } = PX?.config;
-        const { table = {} } = pageLang;
+    if ($("#dtDynMainMenu").length > 0) {
+        const {pageLang={}} = PX?.config;
+        const {table={}} = pageLang;
         let col_draft = [
             {
                 data: 'id',
                 title: table?.id
             },
+            /*{
+                data: null,
+                title: table?.serial,
+                class: 'text-center',
+                width: '200px',
+                render: function (data, type, row) {
+                    return `<input type="number" value="` + data.serial + `" class="form-control serial"><input type="hidden" value="` + data.id + `" class="form-control ids">`;
+                }
+            },*/
             {
                 data: 'name',
                 title: table?.name
             },
-             {
-                data: 'slug',
-                title: table?.slug
-            },
-            {
-                data: 'image',
-                title: table?.feature_image
-            },
+
             {
                 data: 'created_at',
                 title: table?.created
@@ -81,31 +74,31 @@ $(document).ready(function () {
                 title: table?.action,
                 class: 'text-end',
                 render: function (data, type, row) {
-                    return `<a href="${baseurl}admin/pages/${data.id}/edit" class="btn btn-outline-secondary btn-sm edit" title="Edit">
+                    return `<a href="${baseurl}admin/main-menu/${data.id}/edit" class="btn btn-outline-secondary btn-sm edit" title="Edit">
                         <i class="fas fa-pencil-alt"></i>
                     </a>`;
                 }
             },
         ];
-        PX.renderDataTable('dtDynPage', {
+        PX.renderDataTable('dtDynMainMenu', {
             select: true,
-            url: 'admin/pages/list',
+            url: 'admin/main-menu/list',
             columns: col_draft,
             pdf: [1, 2]
         });
     }
 })
 
-function dtDynPage(table, api, op) {
+function dtDynMainMenu(table, api, op) {
     PX.deleteAll({
-        element: "deleteAllDynPage",
-        script: "admin/pages/delete-list",
+        element: "deleteAllDynMainMenu",
+        script: "admin/main-menu/delete-list",
         confirm: true,
         api,
     });
     PX.updateAll({
-        element: "updateAllDynPage",
-        script: "admin/pages/update-list",
+        element: "updateAllDynMainMenu",
+        script: "admin/main-menu/update-list",
         confirm: true,
         dataCols: {
             key: "ids",
@@ -129,6 +122,6 @@ function dtDynPage(table, api, op) {
             type: "inflate_response_data"
         }
     });
-    PX?.dowloadPdf({ ...op, btn: "downloadDynPagePdf", dataTable: "yes" })
-    PX?.dowloadExcel({ ...op, btn: "downloadDynPageExcel", dataTable: "yes" })
+    PX?.dowloadPdf({ ...op, btn: "downloadDynMainMenuPdf", dataTable: "yes" })
+    PX?.dowloadExcel({ ...op, btn: "downloadDynMainMenuExcel", dataTable: "yes" })
 }

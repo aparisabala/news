@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dyn_pages', function (Blueprint $table) {
+        Schema::create('dyn_main_menus', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('slug');
-            $table->longText('content')->nullable();
-            $table->string('feature_image')->nullable();
-            $table->string('extension')->nullable();
-            $table->string('status',7)->default('Active');
-            $table->integer('page_view')->default(0);
+            $table->string('dyn_page_id');
+            $table->string('link_to')->default('_self');
+            $table->integer('serial');
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dyn_pages');
+        Schema::dropIfExists('dyn_main_menus');
     }
 };

@@ -48,7 +48,8 @@ return [
                     'reset',
                     'system',
                     'pages',
-                    'category'
+                    'category',
+                    'main-menu'
                 ]
             ]
         ]
@@ -91,6 +92,7 @@ return [
         'admin.system.user.user-role' => 'admin/system/user/user-role/index',
         'admin.system.user.policy' => 'admin/system/user/policy/index',
         'admin.pages.crud' => 'admin/pages/crud/index',
-        'admin.category.crud' => 'admin/category/crud/index'
+        'admin.category.crud' => 'admin/category/crud/index',
+        'admin.main-menu.crud' => 'admin/main-menu/crud/index'
     ]
 ];

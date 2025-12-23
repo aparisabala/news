@@ -6,17 +6,14 @@ use App\Traits\BaseTrait;
 use Illuminate\Database\Eloquent\Model;
 //vpx_imports
 //crudDone
-class DynPage extends Model
+class DynMainMenu extends Model
 {
     use BaseTrait;
-    protected $table = "dyn_pages";
+    protected $table = "dyn_main_menus";
     protected $fillable = [
         'name',
-        'slug',
-        'feature_image',
-        'extension',
-        'content'
-        //'serial'
+        'dyn_page_id',
+        'serial'
     ];
     //vpx_attach
 }

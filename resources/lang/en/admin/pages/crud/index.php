@@ -12,6 +12,7 @@ return [
     ],
     'fields' => [
         'name' => 'Page Name',
+        'slug' => 'Slug',
         'feature_image' => 'Featured Image',
         'content' => 'Page Content',
         'status' => 'Status',
@@ -19,6 +20,7 @@ return [
     'table' => [
         'id' => 'ID',
         'name' => 'Name',
+        'slug' => 'Slug',
         'feature_image' => 'Featured Image',
         'content' => 'Page Content',
         'status' => 'Status',
