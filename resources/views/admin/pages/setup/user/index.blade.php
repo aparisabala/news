@@ -61,12 +61,9 @@
                                                         </div>
                                                         <div class="row mt-3">
                                                             <div class="col-md-4">
-                                                                <img src="{{getRowImage(Auth::user(),'300X300')}}" class="img-fluid w-100 border border-primary " />
-                                                                @if(imageExists(Auth::user(),'80X80'))
-                                                                    <input type="hidden"  id="img_uploaded" name="img_uploaded" value="yes"/>
-                                                                @else
-                                                                    <input type="hidden"  id="img_uploaded" name="img_uploaded" value="no"/>
-                                                                @endif
+                                                                <div>
+                                                                    <img src="{{getRowImage(row: $data['item'],col:'image', ext: '80X80')}}" class="img-fluid" />
+                                                                </div>
                                                             </div>
                                                         </div>
 

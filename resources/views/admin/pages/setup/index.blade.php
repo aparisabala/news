@@ -45,13 +45,9 @@
                                                 <div class="input-group">
                                                     <input type="file" class="form-control" name="image" id="image"/>
                                                 </div>
-                                                @if(imageExists(Auth::user(),'300X300'))
-                                                    <input type="hidden"  id="img_uploaded" name="img_uploaded" value="yes"/>
-                                                    <p class=""> {{pxLang($data['lang'],'titles.uploaded_image')}}  <a href="{{ getRowImage(Auth::user(),'300X300') }}" download> {{pxLang($data['lang'],'titles.image')}} </a></p>
-                                                @else
-                                                    <input type="hidden"  id="img_uploaded" name="img_uploaded" value="no"/>
-                                                @endif
-
+                                                <div>
+                                                    <img src="{{getRowImage(row: $data['item'],col:'image', ext: '80X80')}}" class="img-fluid" />
+                                                </div>
                                             </div>
                                         </div>
 

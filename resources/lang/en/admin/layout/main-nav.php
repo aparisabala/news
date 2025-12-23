@@ -2,6 +2,7 @@
 
 return [
     'dashboard' => 'Dashboard',
+    'pages.menu' => 'Page Management',
     'system.core' => 'System Core',
     'system.core.user_role' => 'User Roles',
     'system.core.user' => 'Users',
