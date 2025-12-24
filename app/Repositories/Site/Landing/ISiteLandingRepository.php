@@ -7,4 +7,5 @@ use Illuminate\Http\JsonResponse;
 interface ISiteLandingRepository {
 
     public function display($request) : array;
+    public function page($request) : array;
 }

@@ -29,5 +29,13 @@ class SiteLandingController extends Controller
         $data = [...$data,...$this->iSiteLandingRepo->display($request)];
         return view('site.pages.landing.index')->with('data',$data);
     }
+
+
+    public function pages(Request $request)
+    {
+        $data['lang'] = $this->lang;
+        $data = [...$data,...$this->iSiteLandingRepo->page($request)];
+        return view('site.pages.pages.index')->with('data',$data);
+    }
     //vpx_attach
 }

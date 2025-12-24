@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\AppData;
+use App\Models\DynArticleComponent;
 use App\Models\DynMainMenu;
 use App\Models\Institute;
 use Illuminate\Pagination\Paginator;
@@ -28,6 +29,11 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrapFive();
         View::composer('site.includes.header', function ($view) {
             $data['menus'] = DynMainMenu::with(['page'=>function($q){$q->select(['id','slug']);}])->select(['id','name','dyn_page_id'])->get();
+
+            $view->with('data',$data);
+        });
+        View::composer('site.pages.landing._fragments._slider', function ($view) {
+            $data['sliders'] = DynArticleComponent::where([['type','=','slider']])->latest()->take(5)->get();
             $view->with('data',$data);
         });
     }
