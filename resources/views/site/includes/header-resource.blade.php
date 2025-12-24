@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="_token" content="{{ csrf_token() }}">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+@include('site.includes.seo')
 <title> {!! $tabTitle ?? 'Site Title' !!} </title>
 <link rel="shortcut icon" href="{{ config('i.favicon') }}" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />

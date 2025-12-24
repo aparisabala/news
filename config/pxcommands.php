@@ -50,7 +50,8 @@ return [
                     'pages',
                     'category',
                     'main-menu',
-                    'articles'
+                    'articles',
+                    'meta-info'
                 ]
             ]
         ],
@@ -65,7 +66,7 @@ return [
                 ],
                 'local' => [
                     'px',
-                    'site',
+                    'site'
                 ],
                 'conditional' => [
 
@@ -136,6 +137,7 @@ return [
         'admin.category.crud' => 'admin/category/crud/index',
         'admin.main-menu.crud' => 'admin/main-menu/crud/index',
         'admin.articles.crud' => 'admin/articles/crud/index',
-        'site.landing.index' => 'site/landing/index'
+        'site.landing.index' => 'site/landing/index',
+        'admin.meta-info.form.update' => 'admin/meta-info/form/update/index'
     ]
 ];

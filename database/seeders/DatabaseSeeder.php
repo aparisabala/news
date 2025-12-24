@@ -35,5 +35,12 @@ class DatabaseSeeder extends Seeder
             'created_at' =>  Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' =>  Carbon::now()->format('Y-m-d H:i:s'),
         ]);
+
+        DB::table('system_metas')->insert([
+            'service_name' => 'Service Name',
+            'service_domain' => (env('SERVER_MODE') == 'LOCAL') ? 'domain.com' : $_SERVER['HTTP_HOST'],
+            'created_at' =>  Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' =>  Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
     }
 }

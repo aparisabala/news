@@ -20,12 +20,17 @@ function imagePaths()
 }
 
 function imageExists($row,$ext='80X80'){
-    $path = imagePaths()['dyn_image'].'/'.$row?->image.'_'.$ext.'.'.$row?->extension;
+    $path = imagePaths()['dyn_image'].$row?->image.'_'.$ext.'.'.$row?->extension;
     return ($row?->image == null || !file_exists($path)) ? false : true;
 }
 
 function getRowImage($row,$col="image",$ext='80X80'){
-    $path = imagePaths()['dyn_image'].'/'.$row?->{$col}.'_'.$ext.'.'.$row?->extension;
+    $path = imagePaths()['dyn_image'].$row?->{$col}.'_'.$ext.'.'.$row?->extension;
+    return ($row?->{$col} == "" || !file_exists($path)) ? url('images/system/img.jpg') : url($path);
+}
+
+function getDirectImage($row,$col="image"){
+    $path = imagePaths()['dyn_image'].'/'.$row?->{$col};
     return ($row?->{$col} == "" || !file_exists($path)) ? url('images/system/img.jpg') : url($path);
 }
 

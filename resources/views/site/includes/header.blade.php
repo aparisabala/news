@@ -1,8 +1,11 @@
 <header class="blog-header py-3">
     <div class="row flex-nowrap justify-content-between align-items-center">
       <div class="col-12 text-center">
+        <div class="mb-2">
+            <img src="{{config('i.logo')}}" style="max-width: 150px;"/>
+        </div>
         <a class="blog-header-logo text-dark" href="{{url('/')}}">{{config('i.service_name')}}</a>
-      </div>
+      </div?>
     </div>
   </header>
   <div class="nav-scroller py-1 mb-2">

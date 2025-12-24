@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\AppData;
+use App\Models\SystemMeta;
 use App\Traits\BaseTrait;
 use Closure;
 use Illuminate\Http\Request;
@@ -19,18 +20,16 @@ class SetBootConfig
     public function handle(Request $request, Closure $next): Response
     {
         $app_data = AppData::where('id',1)->select(['*'])->first();
-        if(!empty($app_data) ) {
+        $metaInfo = SystemMeta::find(1);
+        if(!empty($app_data) && !empty($metaInfo)) {
+            $logoPath = 'uploads/app/'.$metaInfo->service_domain.'/dyn/images/'.$metaInfo->logo;
+            $faviconPath = 'uploads/app/'.$metaInfo->service_domain.'/dyn/images/'.$metaInfo->favicon;
+            $metaimagePath = 'uploads/app/'.$metaInfo->service_domain.'/dyn/images/'.$metaInfo->meta_image;
+            $metaInfo['logo'] = (file_exists($logoPath)) ? url($logoPath) : url('images/system/logo.png');
+            $metaInfo['favicon'] = (file_exists($faviconPath)) ? url($faviconPath) : url('images/system/favicon.png');
+            $metaInfo['meta_image'] = (file_exists($metaimagePath)) ? url($metaimagePath) : url('images/system/logo.png');
             config(['a' => $app_data]);
-            config(['i' => [
-                    'service_name' => "Service Name",
-                    "service_domain"=> "domain.com",
-                    "address"=>"Address",
-                    "mobile_number" =>"01XXX0017454",
-                    "service_email" =>"email@domain.com",
-                    'logo'=> url('images/system/logo.png'),
-                    'favicon'=> url('images/system/favicon.png'),
-                ]
-            ]);
+            config(['i' => [...$metaInfo->toArray()]]);
             foreach (uploadsDir() as $key => $path) {
                 if(!is_dir($path)) {
                     File::makeDirectory($path, 0755, true);
