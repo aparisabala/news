@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin\MainMenu\Crud;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\MainMenu\Crud\ValidateStoreDynMainMenu;
+use App\Models\DynCategory;
+use App\Models\DynMainMenuCategory;
 use App\Models\DynPage;
 use App\Repositories\Admin\MainMenu\Crud\IDynMainMenuCrudRepository;
 use App\Traits\BaseTrait;
@@ -20,6 +22,8 @@ class DynMainMenuCrudController  extends Controller {
             return $next($request);
         });
         $this->pages = DynPage::select(['id','name'])->get();
+        $this->categories =  DynCategory::select(['id','name'])->get();
+
     }
 
     /**
@@ -33,6 +37,7 @@ class DynMainMenuCrudController  extends Controller {
         $data = $this->iDynMainMenuCrudRepo->index($request);
         $data['lang'] = $this->lang;
         $data['pages'] = $this->pages;
+        $data['categories'] = $this->categories;
         return view('admin.pages.main-menu.crud.index',compact('data'));
     }
 
@@ -70,6 +75,8 @@ class DynMainMenuCrudController  extends Controller {
         $data = $this->iDynMainMenuCrudRepo->index($request,$id);
         $data['lang'] = $this->lang;
         $data['pages'] = $this->pages;
+        $data['categories'] = $this->categories;
+        $data['categoryTaken'] = DynMainMenuCategory::where([['dyn_main_menu_id','=',$data['item']?->id]])->pluck('dyn_category_id')->toArray();
         return view('admin.pages.main-menu.crud.index', compact('data'));
     }
 

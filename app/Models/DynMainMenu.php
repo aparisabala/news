@@ -12,6 +12,7 @@ class DynMainMenu extends Model
     protected $table = "dyn_main_menus";
     protected $fillable = [
         'name',
+        'slug',
         'dyn_page_id',
         'serial'
     ];

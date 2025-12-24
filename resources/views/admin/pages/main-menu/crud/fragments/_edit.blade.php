@@ -23,16 +23,26 @@
                                         <select class="form-control" name="dyn_page_id" id="dyn_page_id">
                                             <option value="">-- {{pxLang('','','common.text.option_select')}} -- </option>
                                             @foreach ($data['pages'] as $item)
-                                                <option {{($data['item']?->dyn_page_id == $item?->is) ? 'selected':''}} value="{{$item?->id}}">{{$item?->name}}</option>
+                                                <option {{($data['item']?->dyn_page_id == $item?->id) ? 'selected':''}} value="{{$item?->id}}">{{$item?->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
-                                <div class="mb-3 mt-3 text-end">
-                                    <button class="btn btn-info btn-sm" type="submit"><i class="fa fa-save"></i> {{pxLang($data['lang'],'','common.btns.crud_action_update')}} </button>
-                                </div>
                             </div>
                         </div>
+                        <div class="col-md-4">
+                             <h5 class="mt-3"> Assign Categories </h5>
+                            <div class="row">
+                                @foreach ($data['categories'] as $item)
+                                    <div class="col-md-4">
+                                        <input type="checkbox" {{(in_array($item?->id, $data['categoryTaken'])) ? 'checked':''}} value="{{$item?->id}}" name="categories[]" /> {{$item?->name}}
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 mt-3 text-end">
+                        <button class="btn btn-info btn-sm" type="submit"><i class="fa fa-save"></i> {{pxLang($data['lang'],'','common.btns.crud_action_update')}} </button>
                     </div>
                 </div>
             </div>

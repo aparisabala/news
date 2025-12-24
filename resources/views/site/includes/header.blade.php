@@ -9,7 +9,7 @@
     <nav class="nav d-flex justify-content-start">
       <a class="p-2 link-secondary" href="{{url('/')}}">Home</a>
       @foreach ($data['menus'] as $item)
-        <a class="p-2 link-secondary" href="{{url('pages/'.$item?->page?->slug)}}">{{$item?->name}}</a>
+        <a class="p-2 link-secondary" href="{{url('menus/'.$item?->slug)}}">{{$item?->name}}</a>
       @endforeach
     </nav>
   </div>

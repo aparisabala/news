@@ -31,11 +31,11 @@ class SiteLandingController extends Controller
     }
 
 
-    public function pages(Request $request)
+    public function menus(Request $request)
     {
         $data['lang'] = $this->lang;
-        $data = [...$data,...$this->iSiteLandingRepo->page($request)];
-        return view('site.pages.pages.index')->with('data',$data);
+        $data = [...$data,...$this->iSiteLandingRepo->menus($request)];
+        return view('site.pages.menus.index')->with('data',$data);
     }
     //vpx_attach
 }

@@ -1,10 +1,13 @@
 @extends('site.layouts.main-layout',["tabTitle" => config('i.service_name')." | Dashboard" ])
 @section('page')
 @include('site.pages.landing._fragments._slider')
-@if($data['page'] != null)
-    @if($data['page']?->content != null)
-        {!! $data['page']?->content !!}
+@if($data['menu'] != null)
+    @if($data['menu']?->page?->content != null)
+        <div class="mt-3 mb-3">
+            {!! $data['menu']?->page?->content !!}
+        </div>
     @endif
+    @include('site.pages.landing._fragments._categories')
 @else
     <div class='row'>
         <div class='col-md-12'>

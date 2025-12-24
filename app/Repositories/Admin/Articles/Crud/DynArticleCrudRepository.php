@@ -93,7 +93,7 @@ class  DynArticleCrudRepository extends BaseRepository implements IDynArticleCru
                 $insert['extension'] = $extension;
             }
             $article = DynArticle::create($insert);
-            if(isset($request->components)){
+            if ($request->filled('components')) {
                 foreach ($request->components as $key => $value) {
                     $c = new  DynArticleComponent;
                     $c->dyn_article_id = $article->id;
@@ -102,7 +102,7 @@ class  DynArticleCrudRepository extends BaseRepository implements IDynArticleCru
                     $c->save();
                 }
             }
-            if(isset($request->categories)){
+            if ($request->filled('categories')) {
                 foreach ($request->categories as $key => $value) {
                     $c = new  DynArticleComponent;
                     $c->dyn_article_id = $article->id;
@@ -142,7 +142,7 @@ class  DynArticleCrudRepository extends BaseRepository implements IDynArticleCru
         ]);
         $path = imagePaths()['dyn_image'];
         $image = $request->file('feature_image');
-        if(isset($request->components)){
+        if ($request->filled('components')) {
             DynArticleComponent::where([['dyn_article_id','=',$row->id],['componet_type','=','components']])->delete();
             foreach ($request->components as $key => $value) {
                 $c = new  DynArticleComponent;
@@ -152,7 +152,7 @@ class  DynArticleCrudRepository extends BaseRepository implements IDynArticleCru
                 $c->save();
             }
         }
-        if(isset($request->categories)){
+        if ($request->filled('categories')) {
             DynArticleComponent::where([['dyn_article_id','=',$row->id],['type','=','categories']])->delete();
             foreach ($request->categories as $key => $value) {
                 $c = new  DynArticleComponent;

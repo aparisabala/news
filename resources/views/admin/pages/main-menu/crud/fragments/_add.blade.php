@@ -26,11 +26,21 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="mb-3 mt-3 text-end">
-                                    <button class="btn btn-info btn-sm" type="submit"><i class="fa fa-plus"></i> {{pxLang($data['lang'],'','common.btns.crud_action_add')}} </button>
-                                </div>
                             </div>
                         </div>
+                        <div class="col-md-4">
+                            <h5 class="mt-3"> Assign Categories </h5>
+                            <div class="row">
+                                @foreach ($data['categories'] as $item)
+                                    <div class="col-md-4">
+                                        <input type="checkbox" value="{{$item?->id}}" name="categories[]" /> {{$item?->name}}
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 mt-3 text-end">
+                        <button class="btn btn-info btn-sm" type="submit"><i class="fa fa-plus"></i> {{pxLang($data['lang'],'','common.btns.crud_action_add')}} </button>
                     </div>
                 </div>
             </div>

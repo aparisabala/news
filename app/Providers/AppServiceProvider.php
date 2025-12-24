@@ -28,8 +28,7 @@ class AppServiceProvider extends ServiceProvider
         //vpx_binds
         Paginator::useBootstrapFive();
         View::composer('site.includes.header', function ($view) {
-            $data['menus'] = DynMainMenu::with(['page'=>function($q){$q->select(['id','slug']);}])->select(['id','name','dyn_page_id'])->get();
-
+            $data['menus'] = DynMainMenu::with(['page'=>function($q){$q->select(['id','slug']);}])->select(['id','name','dyn_page_id','slug'])->get();
             $view->with('data',$data);
         });
         View::composer('site.pages.landing._fragments._slider', function ($view) {

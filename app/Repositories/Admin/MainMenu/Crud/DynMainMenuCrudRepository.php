@@ -4,6 +4,7 @@ namespace App\Repositories\Admin\MainMenu\Crud;
 
 use App\Http\Requests\Admin\MainMenu\Crud\ValidateUpdateDynMainMenu;
 use App\Models\DynMainMenu;
+use App\Models\DynMainMenuCategory;
 use App\Repositories\BaseRepository;
 use App\Traits\BaseTrait;
 use Carbon\Carbon;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\JsonResponse;
 use Auth;
 use DB;
+use Str;
 class  DynMainMenuCrudRepository extends BaseRepository implements IDynMainMenuCrudRepository {
 
     use BaseTrait;
@@ -66,10 +68,19 @@ class  DynMainMenuCrudRepository extends BaseRepository implements IDynMainMenuC
     {
         DB::beginTransaction();
         try {
-            DynMainMenu::create([
+            $menu = DynMainMenu::create([
                 ...$request->all(),
-                'serial' => $this->facSrWc($this->DynMainMenu)
+                'serial' => $this->facSrWc($this->DynMainMenu),
+                'slug' => Str::slug($request->name)
             ]);
+            if ($request->filled('categories')) {
+                foreach ($request->categories as $key => $value) {
+                    $c = new  DynMainMenuCategory;
+                    $c->dyn_main_menu_id = $menu->id;
+                    $c->dyn_category_id = $value;
+                    $c->save();
+                }
+            }
             $response['extraData'] = ['inflate' => pxLang($request->lang,'','common.action_success') ];
             $this->saveTractAction($this->getTrackData(title: "DynMainMenu was created by ".$request?->auth?->name,request: $request));
             DB::commit();
@@ -95,8 +106,20 @@ class  DynMainMenuCrudRepository extends BaseRepository implements IDynMainMenuC
             return  $this->response(['type' => 'noUpdate', 'title' =>  '<span class="text-danger">'.pxLang($request->lang,'','common.no_resourse').'</span>']);
         }
         $rowRef = [...$row->toArray()];
-        $row->fill($request->all());
-        if($row->isDirty()){
+        $row->fill([
+            ...$request->all(),
+            'slug' => Str::slug($request->name)
+        ]);
+        if ($request->filled('categories')) {
+            DynMainMenuCategory::where([['dyn_main_menu_id','=',$row->id]])->delete();
+            foreach ($request->categories as $key => $value) {
+                $c = new  DynMainMenuCategory;
+                $c->dyn_main_menu_id = $row?->id;
+                $c->dyn_category_id = $value;
+                $c->save();
+            }
+        }
+        if($row->isDirty() || isset($request->categories)){
             $validator = Validator::make($request->all(), (new ValidateUpdateDynMainMenu())->rules($request,$row));
             if ($validator->fails()) {
                 return $this->response(['type' => 'validation','errors' => $validator->errors()]);
