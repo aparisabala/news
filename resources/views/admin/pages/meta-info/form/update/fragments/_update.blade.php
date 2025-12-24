@@ -60,3 +60,10 @@
     </div>
 </div>
 
+<div class="form-group text-left mb-3">
+    <label class="form-label"> <b>{{pxLang($data['lang'],'fields.about_us')}}</b> <em class="required">*</em> <span id="about_us_error"></span></label>
+    <div class="input-group">
+        <textarea rows="4"  class="form-control" name="about_us" id="about_us" >{{$data['item']?->about_us}}</textarea>
+    </div>
+</div>
+

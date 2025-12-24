@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('favicon')->nullable();
             $table->string('meta_image')->nullable();
             $table->text('meta_tags')->nullable();
+            $table->string('about_us')->nullable();
             $table->timestamps();
         });
     }

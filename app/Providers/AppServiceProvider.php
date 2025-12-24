@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\AppData;
+use App\Models\DynArticle;
 use App\Models\DynArticleComponent;
 use App\Models\DynMainMenu;
 use App\Models\Institute;
@@ -33,6 +34,10 @@ class AppServiceProvider extends ServiceProvider
         });
         View::composer('site.pages.landing._fragments._slider', function ($view) {
             $data['sliders'] = DynArticleComponent::where([['type','=','slider']])->latest()->take(5)->get();
+            $view->with('data',$data);
+        });
+         View::composer('site.pages.landing._fragments._side-bar', function ($view) {
+            $data['articles'] = DynArticle::latest()->orderBy('page_view','DESC')->take(12)->select(['id','slug','name'])->get();
             $view->with('data',$data);
         });
     }

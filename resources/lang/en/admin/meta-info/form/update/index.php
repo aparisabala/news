@@ -18,6 +18,7 @@ return [
         'favicon' => 'Favicon',
         'meta_image' => 'Meta Image',
         'meta_tags' => 'Meta Tags',
+        'about_us' => 'About Us'
     ],
     'table' => [
         'id' => 'ID',

@@ -16,6 +16,7 @@ class SystemMeta extends Model
         'logo',
         'favicon',
         'meta_tags',
+        'about_us'
     ];
     //vpx_attach
 }

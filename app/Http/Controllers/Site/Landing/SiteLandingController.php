@@ -42,6 +42,10 @@ class SiteLandingController extends Controller
     {
         $data['lang'] = $this->lang;
         $data = [...$data,...$this->iSiteLandingRepo->article($request)];
+        if($data['article'] != null) {
+            $data['article']->page_view += 1;
+            $data['article']->save();
+        }
         return view('site.pages.article.index')->with('data',$data);
     }
 
