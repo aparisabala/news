@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Site\Landing;
 
+use App\Models\DynArticle;
 use App\Models\DynArticleComponent;
 use App\Models\DynCategory;
 use App\Models\DynMainMenu;
@@ -30,6 +31,12 @@ class SiteLandingRepository  extends BaseRepository implements ISiteLandingRepos
         $data['menu'] = DynMainMenu::with(['page'])->where([['slug','=',$request->slug]])->first();
         $categoryIds = DynMainMenuCategory::where([['dyn_main_menu_id','=',$data['menu']?->id]])->pluck('dyn_category_id')->toArray();
         $data['categories'] = DynCategory::whereIn('id',$categoryIds)->with(['components'=>function($q){$q->take(3);}])->select(['id','name'])->get();
+        return $data;
+    }
+
+    public function article($request) : array
+    {
+        $data['article'] = DynArticle::where([['slug','=',$request->slug]])->first();
         return $data;
     }
 }

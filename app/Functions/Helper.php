@@ -39,6 +39,21 @@ function getPolicyKey($Str,$key) {
     return $Str::lower($Str::replace(' ','_',$key));
 }
 
-function getArticleView($str,$limit=70){
-    return ($str == '') ? $str :  mb_substr(strip_tags($str),0,$limit);
+function getArticleView($str, $limit = 70) {
+    if (empty($str)) {
+        return '';
+    }
+    $str = strip_tags($str);
+    $str = html_entity_decode($str, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    $str = preg_replace('/\s+/', ' ', $str);
+    $str = trim($str);
+    if (mb_strlen($str) <= $limit) {
+        return $str;
+    }
+    $truncated = mb_substr($str, 0, $limit);
+    $lastSpace = mb_strrpos($truncated, ' ');
+    if ($lastSpace !== false) {
+        $truncated = mb_substr($truncated, 0, $lastSpace);
+    }
+    return $truncated . '…';
 }

@@ -12,4 +12,11 @@
         font-size: 3.5rem;
     }
     }
+
+    .word-wrap {
+        max-width: 100%;
+        overflow-wrap: break-word;   /* modern */
+        word-break: break-word;      /* fallback */
+        white-space: normal;
+    }
 </style>

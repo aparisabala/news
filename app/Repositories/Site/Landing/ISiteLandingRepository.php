@@ -8,4 +8,5 @@ interface ISiteLandingRepository {
 
     public function display($request) : array;
     public function menus($request) : array;
+    public function article($request) : array;
 }
