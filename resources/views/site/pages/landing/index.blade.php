@@ -1,4 +1,4 @@
-@extends('site.layouts.main-layout',["tabTitle" => config('i.service_name')." | Dashboard" ])
+@extends('site.layouts.main-layout',["tabTitle" => config('i.service_name')])
 @section('page')
   @include('site.pages.landing._fragments._slider')
   @include('site.pages.landing._fragments._featured')
