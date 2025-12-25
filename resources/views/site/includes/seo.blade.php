@@ -1,6 +1,6 @@
 <meta property="og:locale" content="en_US" />
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content="Tahmid Construction & Engineering Corporation " />
+<meta property="og:site_name" content="{{config('i.service_name')}}" />
 @php
     $keywards = ['Construction','Engineering','Engineering ExcellenceBuilding Trust'];
 @endphp
