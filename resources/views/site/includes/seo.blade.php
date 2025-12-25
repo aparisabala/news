@@ -2,7 +2,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="{{config('i.service_name')}}" />
 @php
-    $keywards = ['Construction','Engineering','Engineering ExcellenceBuilding Trust'];
+    $keywards = ['blog','food'];
 @endphp
 @if(isset($data['article']) && $data['article'] != "")
 @php
