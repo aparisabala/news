@@ -1,11 +1,11 @@
-sudo chown -R nginx:nginx storage/bootstrap/cache
-sudo chmod -R 777 storage bootstrap/cache
-sudo chown -R nginx:nginx storage/storage/framework/cache
-sudo chmod -R 777 storage storage/framework/cache
-sudo chown -R nginx:nginx storage/storage/framework/sessions
-sudo chmod -R 777 storage storage/framework/sessions
-sudo chown -R nginx:nginx storage/storage/logs
-sudo chmod -R 777 storage storage/logs
+sudo chown -R nginx:nginx bootstrap/cache
+sudo chmod -R 777 bootstrap/cache
+sudo chown -R nginx:nginx storage/framework/cache
+sudo chmod -R 777 storage/framework/cache
+sudo chown -R nginx:nginx storage/framework/sessions
+sudo chmod -R 777 storage/framework/sessions
+sudo chown -R nginx:nginx storage/logs
+sudo chmod -R 777 storage/logs
 sudo chown -R nginx:nginx public/uploads
 sudo chmod -R 777 storage public/uploads
 
