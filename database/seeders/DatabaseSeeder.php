@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('system_metas')->insert([
             'service_name' => 'Service Name',
-            'service_domain' => (env('SERVER_MODE') == 'LOCAL') ? 'domain.com' : $_SERVER['HTTP_HOST'],
+            'service_domain' => 'domain.com',
             'created_at' =>  Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' =>  Carbon::now()->format('Y-m-d H:i:s'),
         ]);
