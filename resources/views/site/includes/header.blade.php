@@ -10,7 +10,7 @@
   </header>
   <div class="nav-scroller py-1 mb-2">
     <nav class="nav d-flex justify-content-start">
-      <a class="p-2 link-secondary" href="{{url('/')}}">Home</a>
+      <a class="p-2 link-secondary" href="{{url('/')}}">家</a>
       @foreach ($data['menus'] as $item)
         <a class="p-2 link-secondary" href="{{url('menus/'.$item?->slug)}}">{{$item?->name}}</a>
       @endforeach
