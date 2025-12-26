@@ -78,7 +78,7 @@ class  DynArticleCrudRepository extends BaseRepository implements IDynArticleCru
     {
         DB::beginTransaction();
         try {
-            $insert = [...$request->all(),'slug' => Str::slug($request->name)];
+            $insert = [...$request->all(),'slug' =>  generateSlug($request->name)];
             $path = imagePaths()['dyn_image'];
             $image = $request->file('feature_image');
             if ($request->hasFile('feature_image')) {
@@ -138,7 +138,7 @@ class  DynArticleCrudRepository extends BaseRepository implements IDynArticleCru
         $rowRef = [...$row->toArray()];
         $row->fill([
             ...$request->all(),
-            'slug' => Str::slug($request->name)
+            'slug' => generateSlug($request->name)
         ]);
         $path = imagePaths()['dyn_image'];
         $image = $request->file('feature_image');

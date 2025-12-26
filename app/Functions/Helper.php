@@ -62,3 +62,10 @@ function getArticleView($str, $limit = 70) {
     }
     return $truncated . '…';
 }
+
+
+function generateSlug($str){
+    $slug = preg_replace('/[^\p{L}\p{N}]+/u', '-', $str);
+    $slug = trim($slug, '-');
+    return $slug;
+}

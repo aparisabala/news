@@ -71,7 +71,7 @@ class  DynMainMenuCrudRepository extends BaseRepository implements IDynMainMenuC
             $menu = DynMainMenu::create([
                 ...$request->all(),
                 'serial' => $this->facSrWc($this->DynMainMenu),
-                'slug' => Str::slug($request->name)
+                'slug' =>  generateSlug($request->name)
             ]);
             if ($request->filled('categories')) {
                 foreach ($request->categories as $key => $value) {
@@ -108,7 +108,7 @@ class  DynMainMenuCrudRepository extends BaseRepository implements IDynMainMenuC
         $rowRef = [...$row->toArray()];
         $row->fill([
             ...$request->all(),
-            'slug' => Str::slug($request->name)
+            'slug' => generateSlug($request->name)
         ]);
         if ($request->filled('categories')) {
             DynMainMenuCategory::where([['dyn_main_menu_id','=',$row->id]])->delete();
