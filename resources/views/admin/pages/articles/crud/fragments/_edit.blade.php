@@ -24,6 +24,18 @@
                                         <input type="text" class="form-control" name="name" id="name" value="{{$data['item']?->name}}">
                                     </div>
                                 </div>
+                                 <div class="form-group text-left mb-3">
+                                    <label class="form-label"> <b>{{pxLang($data['lang'],'fields.meta_description')}}</b> <em class="required"></em> <span id="meta_description_error"></span></label>
+                                    <div class="input-group">
+                                        <textarea class="form-control" rows="4" name="meta_description" id="meta_description">{{$data['item']?->meta_description}}</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group text-left mb-3">
+                                    <label class="form-label"> <b>{{pxLang($data['lang'],'fields.meta_keywords')}}</b> <em class="required"></em> <span id="meta_keywords_error"></span></label>
+                                    <div class="input-group">
+                                        <textarea class="form-control" rows="4" name="meta_keywords" id="meta_keywords">{{$data['item']?->meta_keywords}}</textarea>
+                                    </div>
+                                </div>
                                 <div class="form-group text-left mb-3">
                                     <label class="form-label"> <b>{{pxLang($data['lang'],'fields.feature_image')}}</b> <em class="required"></em> <span id="feature_image_error"></span></label>
                                     <div class="input-group">

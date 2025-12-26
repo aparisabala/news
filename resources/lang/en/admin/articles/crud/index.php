@@ -12,6 +12,8 @@ return [
     ],
     'fields' => [
         'name' => 'Article Name',
+        'meta_description' => 'Meta Desctiption',
+        'meta_keywords' => 'Meta Keywords',
         'slug' => 'Slug',
         'feature_image' => 'Featured Image',
         'content' => 'Page Content',

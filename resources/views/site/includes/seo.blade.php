@@ -6,12 +6,12 @@
 @endphp
 @if(isset($data['article']) && $data['article'] != "")
 @php
-    $blogKeywords = ($data['article']?->seo != null) ? explode(',',$data['article']?->seo) : [];
+    $blogKeywords = ($data['article']?->meta_keywords != null) ? explode(',',$data['article']?->meta_keywords) : [];
     $keywards = [$data['article']->name,...$blogKeywords];
 @endphp
 <meta name="robots" content="index, article/{{$data['article']->slug}}">
 <meta property="og:title" content="{{ $data['article']->name }}" />
-<meta property="og:description" content="{{ getArticleView($data['article']->content,1000) }}" />
+<meta property="og:description" content="{{ ($data['article']->meta_description != null) ? $data['article']->meta_description : getArticleView($data['article']->content,1000) }}" />
 <meta property="og:url" content="{{ url('article/'.$data['article']->slug) }}" />
 <meta property="og:image" content="{{getRowImage(row: $data['article'],col:'feature_image', ext: '1280X720')}}" />
 @else

@@ -31,6 +31,8 @@ class ValidateStoreDynArticle extends FormRequest
         return [
             'name' => 'required|string|max:253|unique:dyn_pages,name',
             'feature_image' => 'required|file|mimes:png,jpg,JPEG,JPG,webp',
+            'meta_description' => 'nullable|string|max:253',
+            'meta_keywords' => 'nullable|string|max:253',
             'content' => 'nullable|string'
         ];
     }

@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('dyn_articles', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('meta_description')->nullable();
+            $table->string('meta_keywords')->nullable();
             $table->string('slug');
             $table->longText('content')->nullable();
             $table->string('feature_image')->nullable();

@@ -30,7 +30,9 @@ class ValidateUpdateDynArticle extends FormRequest
     {
         $rules =  [
             'feature_image' => 'nullable|file|mimes:png,jpg,JPEG,JPG,webp',
-            'content' => 'required|string'
+            'content' => 'required|string',
+            'meta_description' => 'nullable|string|max:253',
+            'meta_keywords' => 'nullable|string|max:253',
         ];
         if($row->isDirty('name')) {
             $rules['name'] = 'required|string|max:253|unique:dyn_articles,name';

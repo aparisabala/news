@@ -12,6 +12,8 @@ class DynArticle extends Model
     protected $table = "dyn_articles";
     protected $fillable = [
         'name',
+        'meta_description',
+        'meta_keywords',
         'slug',
         'feature_image',
         'extension',
