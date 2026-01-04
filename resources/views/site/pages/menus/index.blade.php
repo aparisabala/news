@@ -7,7 +7,8 @@
             {!! $data['menu']?->page?->content !!}
         </div>
     @endif
-    @include('site.pages.landing._fragments._categories')
+    {{-- @include('site.pages.landing._fragments._categories') --}}
+      @include('site.pages.landing._fragments._category-pagination')
 @else
     <div class='row'>
         <div class='col-md-12'>

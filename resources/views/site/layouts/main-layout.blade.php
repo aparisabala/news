@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="zh-CN" dir="ltr">
 <head>
     @include('site.includes.header-resource', ['tabTitle' => $tabTitle ?? 'Site Title'])
 </head>

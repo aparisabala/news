@@ -34,7 +34,7 @@ class SiteLandingController extends Controller
     public function menus(Request $request)
     {
         $data['lang'] = $this->lang;
-        $data = [...$data,...$this->iSiteLandingRepo->menus($request)];
+        $data = [...$data,...$this->iSiteLandingRepo->categoryMenus($request)];
         return view('site.pages.menus.index')->with('data',$data);
     }
 
