@@ -26,6 +26,34 @@ class SiteLandingRepository  extends BaseRepository implements ISiteLandingRepos
         return $data;
     }
 
+    public function categoryMenus($request): array
+{
+    $data['menu'] = DynMainMenu::with('page')
+        ->where('slug', $request->slug)
+        ->firstOrFail();
+
+    $categoryIds = DynMainMenuCategory::where('dyn_main_menu_id', $data['menu']->id)
+        ->pluck('dyn_category_id')
+        ->toArray();
+
+    // Single category
+    $data['category'] = DynCategory::whereIn('id', $categoryIds)
+        ->select('id', 'name')
+        ->first();
+
+    // Paginated articles
+    $data['articles'] = DynArticleComponent::where(
+            'dyn_category_id',
+            $data['category']->id
+        )
+        ->with('article')
+        ->latest()
+        ->paginate(9);
+
+    return $data;
+}
+
+
     public function menus($request) : array
     {
         $data['menu'] = DynMainMenu::with(['page'])->where([['slug','=',$request->slug]])->first();
