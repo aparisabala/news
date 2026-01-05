@@ -38,16 +38,46 @@ class SiteLandingController extends Controller
         return view('site.pages.menus.index')->with('data',$data);
     }
 
+    // public function article(Request $request)
+    // {
+    //     $data['lang'] = $this->lang;
+    //     $data = [...$data,...$this->iSiteLandingRepo->article($request)];
+    //     if($data['article'] != null) {
+    //         $data['article']->page_view += 1;
+    //         $data['article']->save();
+    //     }
+    //     return view('site.pages.article.index')->with('data',$data);
+    // }
     public function article(Request $request)
-    {
-        $data['lang'] = $this->lang;
-        $data = [...$data,...$this->iSiteLandingRepo->article($request)];
-        if($data['article'] != null) {
-            $data['article']->page_view += 1;
-            $data['article']->save();
-        }
-        return view('site.pages.article.index')->with('data',$data);
+{
+    $data['lang'] = $this->lang;
+    $data = [...$data, ...$this->iSiteLandingRepo->article($request)];
+
+    // Increment page view
+    if (!empty($data['article'])) {
+        $data['article']->page_view += 1;
+        $data['article']->save();
+
+        // Prepare JSON-LD schema
+        $article = $data['article'];
+        $data['articleSchema'] = [
+            "@context" => "https://schema.org",
+            "@type" => "Article",
+            "mainEntityOfPage" => [
+                "@type" => "WebPage",
+                "@id" => url()->current(),
+            ],
+            "headline" => $article->name,
+            "description" => $article->meta_description 
+                ?? \Illuminate\Support\Str::limit(strip_tags($article->content), 160),
+            "image" => $article->feature_image ? asset($article->feature_image) : null,
+            "datePublished" => $article->created_at->toIso8601String(),
+            "dateModified" => $article->updated_at->toIso8601String(),
+        ];
     }
+
+    return view('site.pages.article.index')->with('data', $data);
+}
 
 
     //vpx_attach

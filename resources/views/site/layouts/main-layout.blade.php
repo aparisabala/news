@@ -2,6 +2,12 @@
 <html lang="zh-CN" dir="ltr">
 <head>
     @include('site.includes.header-resource', ['tabTitle' => $tabTitle ?? 'Site Title'])
+@if(!empty($data['articleSchema']))
+<script type="application/ld+json">
+{!! json_encode($data['articleSchema'], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+</script>
+@endif
+
 </head>
 <body>
     <div class="modal fade editmodal edimodalGlob" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
