@@ -11,9 +11,9 @@
                     <div class="card blog-card">
                         <img src="{{ getRowImage(row: $item->article, col: 'feature_image', ext: '360X240') }}">
                         <div class="p-2">
-                            <h6>{{ $item->article->name }}</h6>
+                            <h6>{{ $item->article?->name }}</h6>
                             <p class="fs-12">{{ $item->created_at->format('d M Y') }}</p>
-                            <p>{{ getArticleView($item->article->content) }}</p>
+                            <p>{{ getArticleView($item->article?->content) }}</p>
                             <a href="{{ url('article/'.$item->article->slug) }}">
                                 Continue reading →
                             </a>
