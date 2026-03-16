@@ -2,14 +2,14 @@
     <div class="col-md-8">
 
         <h3 class="border-bottom mb-4">
-            {{ ucwords($data['category']->name) }}
+            {{ ucwords($data['category']?->name) }}
         </h3>
 
         <div class="row">
             @foreach ($data['articles'] as $item)
                 <div class="col-md-4 mb-4">
                     <div class="card blog-card">
-                        <img src="{{ getRowImage(row: $item->article, col: 'feature_image', ext: '360X240') }}">
+                        <img src="{{ getRowImage(row: $item?->article, col: 'feature_image', ext: '360X240') }}">
                         <div class="p-2">
                             <h6>{{ $item?->article?->name }}</h6>
                             <p class="fs-12">{{ $item?->created_at?->format('d M Y') }}</p>

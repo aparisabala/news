@@ -44,7 +44,7 @@ class SiteLandingRepository  extends BaseRepository implements ISiteLandingRepos
     // Paginated articles
     $data['articles'] = DynArticleComponent::where(
             'dyn_category_id',
-            $data['category']->id
+            $data['category']?->id
         )
         ->with('article')
         ->latest()
